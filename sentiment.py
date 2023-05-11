@@ -13,7 +13,7 @@ class SentimentLabels():
     
     task='sentiment'
     MODEL = "cardiffnlp/twitter-roberta-base-sentiment"
-    self.tokenizer = AutoTokenizer.from_pretrained("./model")
+    self.tokenizer = AutoTokenizer.from_pretrained(MODEL)
 
     # download label mapping
     self.labels=[]
@@ -22,7 +22,7 @@ class SentimentLabels():
         html = f.read().decode('utf-8').split("\n")
         csvreader = csv.reader(html, delimiter='\t')
     self.labels = [row[1] for row in csvreader if len(row) > 1]
-    self.model = AutoModelForSequenceClassification.from_pretrained("./model")
+    self.model = AutoModelForSequenceClassification.from_pretrained(MODEL)
   
   def preprocess(self,text):
     new_text = []
